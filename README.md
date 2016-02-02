@@ -1,9 +1,16 @@
 # LinmaluShortcutkeyAPI
 
- - author : Linmalu(린마루)
+ - author : 린마루(Linmalu)
  - HomePage : http://blog.linmalu.com/
+ - Language : JAVA
  - Spigot : spigot-api-1.8.8-R0.1
- - Version : 1.01
+ - Version : 1.02
+
+###업데이트
+- 단축키 전체목록이 뜨지 않던걸 수정
+- 단축키를 수정했을때 저장되도록 수정
+- config파일을 UTF-8방식으로 변경(기존에 있는건 글씨가 깨지므로 파일이 새로생성된후 내용을 복사해서 넣으면 됩니다.)
+- LinmaluLibrary v1.07버전이 필요합니다.
 
 ###소개
 - 플레이어가 누른 키를 인식하여 채팅이나 명령이 실행되게 할 수 있습니다.
