@@ -7,10 +7,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChannelEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.linmalu.LinmaluLibrary.API.LinmaluCheckVersion;
 import com.linmalu.LinmaluShortcutkeyAPI.Config.LinmaluConfig;
 import com.linmalu.LinmaluShortcutkeyAPI.Config.ShortcutkeyData;
 import com.linmalu.LinmaluShortcutkeyAPI.Event.LinmaluShortcutkeyUseEvent;
+import com.linmalu.library.api.LinmaluVersion;
 
 public class Main_Event implements Listener
 {
@@ -20,7 +20,7 @@ public class Main_Event implements Listener
 		Player player = event.getPlayer();
 		if(player.isOp())
 		{
-			new LinmaluCheckVersion(Main.getMain(), player, Main.getMain().getTitle() + ChatColor.GREEN + "ÃÖ½Å¹öÀüÀÌ Á¸ÀçÇÕ´Ï´Ù.");
+			LinmaluVersion.check(Main.getMain(), player, Main.getMain().getTitle() + ChatColor.GREEN + "ìµœì‹ ë²„ì „ì´ ì¡´ì¬í•©ë‹ˆë‹¤.");
 		}
 	}
 	@EventHandler

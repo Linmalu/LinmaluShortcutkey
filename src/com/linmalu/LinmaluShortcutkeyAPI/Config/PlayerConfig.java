@@ -8,9 +8,9 @@ import java.util.HashMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-import com.linmalu.LinmaluLibrary.API.LinmaluYamlConfiguration;
 import com.linmalu.LinmaluShortcutkey.LinmaluKeyboardData;
 import com.linmalu.LinmaluShortcutkeyAPI.Main;
+import com.linmalu.library.api.LinmaluYamlConfiguration;
 
 public class PlayerConfig extends LinmaluConfig
 {
@@ -45,7 +45,7 @@ public class PlayerConfig extends LinmaluConfig
 						}
 						catch(Exception e)
 						{
-							Bukkit.broadcastMessage(Main.getMain().getTitle() + ChatColor.GOLD + key + ChatColor.YELLOW + "°¡ ¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù.");
+							Bukkit.broadcastMessage(Main.getMain().getTitle() + ChatColor.GOLD + key + ChatColor.YELLOW + "ê°€ ìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤.");
 						}
 					}
 					players.put(file.getName().replace(".yml", "").toLowerCase(), list);

@@ -11,14 +11,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import com.linmalu.LinmaluLibrary.API.LinmaluCheckVersion;
-import com.linmalu.LinmaluLibrary.API.LinmaluTellraw;
 import com.linmalu.LinmaluShortcutkeyAPI.Config.LinmaluConfig;
 import com.linmalu.LinmaluShortcutkeyAPI.Config.ShortcutkeyData;
+import com.linmalu.library.api.LinmaluTellraw;
+import com.linmalu.library.api.LinmaluVersion;
 
 public class Main_Command implements CommandExecutor
 {
-	private final String AllPlayerName = "ÀüÃ¼";
+	private final String AllPlayerName = "ì „ì²´";
 	public Main_Command()
 	{
 		Main.getMain().getCommand(Main.getMain().getDescription().getName()).setTabCompleter(new TabCompleter()
@@ -30,14 +30,14 @@ public class Main_Command implements CommandExecutor
 				{
 					if(args.length == 1)
 					{
-						list.add("Ãß°¡");
-						list.add("¸ñ·Ï");
-						list.add("»èÁ¦");
-						list.add("ÃÊ±âÈ­");
-						list.add("¸®·Îµå");
+						list.add("ì¶”ê°€");
+						list.add("ëª©ë¡");
+						list.add("ì‚­ì œ");
+						list.add("ì´ˆê¸°í™”");
+						list.add("ë¦¬ë¡œë“œ");
 						list.add("reload");
 					}
-					else if(args.length == 2 && (args[0].equals("Ãß°¡") || args[0].equals("¸ñ·Ï") || args[0].equals("»èÁ¦") || args[0].equals("ÃÊ±âÈ­")))
+					else if(args.length == 2 && (args[0].equals("ì¶”ê°€") || args[0].equals("ëª©ë¡") || args[0].equals("ì‚­ì œ") || args[0].equals("ì´ˆê¸°í™”")))
 					{
 						list.add(AllPlayerName);
 						for(Player player : Bukkit.getOnlinePlayers())
@@ -45,7 +45,7 @@ public class Main_Command implements CommandExecutor
 							list.add(player.getName().toLowerCase());
 						}
 					}
-					else if((args.length == 3 || args.length == 4 || args.length == 5) && (args[0].equals("Ãß°¡") || args[0].equals("»èÁ¦")))
+					else if((args.length == 3 || args.length == 4 || args.length == 5) && (args[0].equals("ì¶”ê°€") || args[0].equals("ì‚­ì œ")))
 					{
 						list.add("true");
 						list.add("false");
@@ -59,7 +59,7 @@ public class Main_Command implements CommandExecutor
 	{
 		if(sender.isOp())
 		{
-			if(args.length > 6 && args[0].equals("Ãß°¡"))
+			if(args.length > 6 && args[0].equals("ì¶”ê°€"))
 			{
 				LinmaluConfig config = args[1].equals(AllPlayerName) ? Main.getMain().getMainConfig() : Main.getMain().getPlayerConfig();
 				try
@@ -77,32 +77,33 @@ public class Main_Command implements CommandExecutor
 					if(config.contains(args[1], sd))
 					{
 						sd.setChat(chat);
-						sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "´ÜÃàÅ°°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.");
+						config.addShortcutkeyData(args[1], sd);
+						sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "ë‹¨ì¶•í‚¤ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					}
 					else
 					{
 						sd.setChat(chat);
 						config.addShortcutkeyData(args[1], sd);
-						sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "´ÜÃàÅ°°¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
+						sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "ë‹¨ì¶•í‚¤ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					}
 				}
 				catch(Exception e)
 				{
-					sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "Å°ÄÚµå°¡ ¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù.");
+					sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "í‚¤ì½”ë“œê°€ ìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤.");
 				}
 				return true;
 			}
-			else if(args.length == 2 && args[0].equals("¸ñ·Ï"))
+			else if(args.length == 2 && args[0].equals("ëª©ë¡"))
 			{
-				LinmaluConfig config = args[1].equals("AllPlayerName") ? Main.getMain().getMainConfig() : Main.getMain().getPlayerConfig();
-				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "´ÜÃàÅ° ¸ñ·Ï");
+				LinmaluConfig config = args[1].equals(AllPlayerName) ? Main.getMain().getMainConfig() : Main.getMain().getPlayerConfig();
+				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "ë‹¨ì¶•í‚¤ ëª©ë¡");
 				for(String msg : config.getList(args[1]))
 				{
 					sender.sendMessage(msg);
 				}
 				return true;
 			}
-			else if(args.length == 6 && args[0].equals("»èÁ¦"))
+			else if(args.length == 6 && args[0].equals("ì‚­ì œ"))
 			{
 				LinmaluConfig config = args[1].equals(AllPlayerName) ? Main.getMain().getMainConfig() : Main.getMain().getPlayerConfig();
 				try
@@ -111,46 +112,46 @@ public class Main_Command implements CommandExecutor
 					if(config.contains(args[1], sd))
 					{
 						config.remove(args[1], sd);
-						sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "´ÜÃàÅ°°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+						sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "ë‹¨ì¶•í‚¤ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 					}
 					else
 					{
-						sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "´ÜÃàÅ°°¡ µî·ÏµÇ¾îÀÖÁö ¾Ê½À´Ï´Ù.");
+						sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "ë‹¨ì¶•í‚¤ê°€ ë“±ë¡ë˜ì–´ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					}
 				}
 				catch(Exception e)
 				{
-					sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "Å°ÄÚµå°¡ ¼ıÀÚ°¡ ¾Æ´Õ´Ï´Ù.");
+					sender.sendMessage(Main.getMain().getTitle() + ChatColor.YELLOW + "í‚¤ì½”ë“œê°€ ìˆ«ìê°€ ì•„ë‹™ë‹ˆë‹¤.");
 				}
 				return true;
 			}
-			else if(args.length == 2 && args[0].equals("ÃÊ±âÈ­"))
+			else if(args.length == 2 && args[0].equals("ì´ˆê¸°í™”"))
 			{
 				LinmaluConfig config = args[1].equals(AllPlayerName) ? Main.getMain().getMainConfig() : Main.getMain().getPlayerConfig();
 				config.clear(args[1]);
-				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "´ÜÃàÅ°°¡ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.");
+				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "ë‹¨ì¶•í‚¤ê°€ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
 				return true;
 			}
-			else if(args.length == 1 && (args[0].equals("¸®·Îµå") || args[0].equals("reload")))
+			else if(args.length == 1 && (args[0].equals("ë¦¬ë¡œë“œ") || args[0].equals("reload")))
 			{
 				Main.getMain().getMainConfig().reload();
 				Main.getMain().getPlayerConfig().reload();
-				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "¸®·Îµå°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+				sender.sendMessage(Main.getMain().getTitle() + ChatColor.GREEN + "ë¦¬ë¡œë“œê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 				return true;
 			}
 			sender.sendMessage(ChatColor.GREEN + " = = = = = [ Linmalu Shortcutkey API ] = = = = =");
-			LinmaluTellraw.sendCmdChat(sender, "/" + label + " Ãß°¡ ", ChatColor.GOLD + "/" + label + " Ãß°¡ <ÀüÃ¼/ÇÃ·¹ÀÌ¾îÀÌ¸§> <Alt(true/false)> <Ctrl(true/false)> <Shift(true/false)> <Keycode> <Ã¤ÆÃ> (Ã¤ÆÃ)..." + ChatColor.GRAY + " : ´ÜÃàÅ° Ãß°¡");
-			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ¸ñ·Ï ", ChatColor.GOLD + "/" + label + " ¸ñ·Ï <ÀüÃ¼/ÇÃ·¹ÀÌ¾îÀÌ¸§>" + ChatColor.GRAY + " : ´ÜÃàÅ° ¸ñ·Ï");
-			LinmaluTellraw.sendCmdChat(sender, "/" + label + " »èÁ¦ ", ChatColor.GOLD + "/" + label + " »èÁ¦ <ÀüÃ¼/ÇÃ·¹ÀÌ¾îÀÌ¸§> <Alt(true/false)> <Ctrl(true/false)> <Shift(true/false)> <Keycode> <Ã¤ÆÃ> (Ã¤ÆÃ)..." + ChatColor.GRAY + " : ´ÜÃàÅ° »èÁ¦");
-			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ÃÊ±âÈ­ ", ChatColor.GOLD + "/" + label + " ÃÊ±âÈ­ <ÀüÃ¼/ÇÃ·¹ÀÌ¾îÀÌ¸§>" + ChatColor.GRAY + " : ´ÜÃàÅ° ÃÊ±âÈ­");
-			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ¸®·Îµå ", ChatColor.GOLD + "/" + label + " ¸®·Îµå" + ChatColor.GRAY + " : ÇÃ·¯±×ÀÎ ¸®·Îµå");
-			sender.sendMessage(ChatColor.YELLOW + "Á¦ÀÛÀÚ : " + ChatColor.AQUA + "¸°¸¶·ç(Linmalu)" + ChatColor.WHITE + " - http://blog.linmalu.com");
-			sender.sendMessage(ChatColor.YELLOW + "Ä«Æä : " + ChatColor.WHITE + "http://cafe.naver.com/craftproducer");
-			new LinmaluCheckVersion(Main.getMain(), sender, Main.getMain().getTitle() + ChatColor.GREEN + "ÃÖ½Å¹öÀüÀÌ Á¸ÀçÇÕ´Ï´Ù.");
+			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ì¶”ê°€ ", ChatColor.GOLD + "/" + label + " ì¶”ê°€ <ì „ì²´/í”Œë ˆì´ì–´ì´ë¦„> <Alt(true/false)> <Ctrl(true/false)> <Shift(true/false)> <Keycode> <ì±„íŒ…> (ì±„íŒ…)..." + ChatColor.GRAY + " : ë‹¨ì¶•í‚¤ ì¶”ê°€");
+			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ëª©ë¡ ", ChatColor.GOLD + "/" + label + " ëª©ë¡ <ì „ì²´/í”Œë ˆì´ì–´ì´ë¦„>" + ChatColor.GRAY + " : ë‹¨ì¶•í‚¤ ëª©ë¡");
+			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ì‚­ì œ ", ChatColor.GOLD + "/" + label + " ì‚­ì œ <ì „ì²´/í”Œë ˆì´ì–´ì´ë¦„> <Alt(true/false)> <Ctrl(true/false)> <Shift(true/false)> <Keycode> <ì±„íŒ…> (ì±„íŒ…)..." + ChatColor.GRAY + " : ë‹¨ì¶•í‚¤ ì‚­ì œ");
+			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ì´ˆê¸°í™” ", ChatColor.GOLD + "/" + label + " ì´ˆê¸°í™” <ì „ì²´/í”Œë ˆì´ì–´ì´ë¦„>" + ChatColor.GRAY + " : ë‹¨ì¶•í‚¤ ì´ˆê¸°í™”");
+			LinmaluTellraw.sendCmdChat(sender, "/" + label + " ë¦¬ë¡œë“œ ", ChatColor.GOLD + "/" + label + " ë¦¬ë¡œë“œ" + ChatColor.GRAY + " : í”ŒëŸ¬ê·¸ì¸ ë¦¬ë¡œë“œ");
+			sender.sendMessage(ChatColor.YELLOW + "ì œì‘ì : " + ChatColor.AQUA + "ë¦°ë§ˆë£¨(Linmalu)" + ChatColor.WHITE + " - http://blog.linmalu.com");
+			sender.sendMessage(ChatColor.YELLOW + "ì¹´í˜ : " + ChatColor.WHITE + "http://cafe.naver.com/craftproducer");
+			LinmaluVersion.check(Main.getMain(), sender, Main.getMain().getTitle() + ChatColor.GREEN + "ìµœì‹ ë²„ì „ì´ ì¡´ì¬í•©ë‹ˆë‹¤.");
 		}
 		else
 		{
-			sender.sendMessage(ChatColor.RED + "±ÇÇÑÀÌ ¾ø½À´Ï´Ù.");
+			sender.sendMessage(ChatColor.RED + "ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		return true;
 	}

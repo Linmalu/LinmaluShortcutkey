@@ -27,11 +27,11 @@ public final class Main extends JavaPlugin
 		}
 		mainConfig = new MainConfig();
 		playerConfig = new PlayerConfig();
-		getLogger().info("Á¦ÀÛ : ¸°¸¶·ç");
+		getLogger().info("ì œìž‘ : ë¦°ë§ˆë£¨");
 	}
 	public void onDisable()
 	{
-		getLogger().info("Á¦ÀÛ : ¸°¸¶·ç");
+		getLogger().info("ì œìž‘ : ë¦°ë§ˆë£¨");
 	}
 	public static Main getMain()
 	{
